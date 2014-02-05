@@ -60,7 +60,7 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 var dashboard = {};
 
 dashboard.getPs = function() {
-    $.get("sh/ps.php", function(data) {
+    $.get("/drop-dash/ps", function(data) {
         destroy_dataTable("ps_dashboard");
         $("#filter-ps").val("").off("keyup");
 
@@ -94,7 +94,7 @@ dashboard.getPs = function() {
 }
 
 dashboard.getUsers = function() {
-    $.get("sh/users.php", function(data) {
+    $.get("/drop-dash/users", function(data) {
         destroy_dataTable("users_dashboard");
 
         $("#users_dashboard").dataTable({
@@ -117,7 +117,7 @@ dashboard.getUsers = function() {
 }
 
 dashboard.getOnline = function() {
-    $.get("sh/online.php", function(data) {
+    $.get("/drop-dash/online", function(data) {
         destroy_dataTable("online_dashboard");
 
         $("#online_dashboard").dataTable({
@@ -141,7 +141,7 @@ dashboard.getOnline = function() {
 }
 
 dashboard.getRam = function() {
-    $.get("sh/mem.php", function(data) {
+    $.get("/drop-dash/mem", function(data) {
         var ram_total = data[1];
         var ram_used = parseInt((data[2] / ram_total) * 100, 10);
         var ram_free = parseInt((data[3] / ram_total) * 100, 10);
@@ -156,7 +156,7 @@ dashboard.getRam = function() {
 }
 
 dashboard.getDf = function() {
-    $.get("sh/df.php", function(data) {
+    $.get("/drop-dash/df", function(data) {
         var table = $("#df_dashboard");
         var ex = document.getElementById("df_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
@@ -183,7 +183,7 @@ dashboard.getDf = function() {
 }
 
 dashboard.getWhereIs = function() {
-    $.get("sh/whereis.php", function(data) {
+    $.get("/drop-dash/whereis", function(data) {
         var table = $("#whereis_dashboard");
         var ex = document.getElementById("whereis_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
@@ -207,13 +207,13 @@ dashboard.getWhereIs = function() {
 }
 
 dashboard.getOs = function() {
-    generate_os_data("sh/issue.php", "#os-info");
-    generate_os_data("sh/hostname.php", "#os-hostname");
-    generate_os_data("sh/uptime.php", "#os-uptime");
+    generate_os_data("/drop-dash/issue", "#os-info");
+    generate_os_data("/drop-dash/hostname", "#os-hostname");
+    generate_os_data("/drop-dash/uptime", "#os-uptime");
 }
 
 dashboard.getIp = function() {
-    $.get("sh/ip.php", function(data) {
+    $.get("/drop-dash/ip", function(data) {
         destroy_dataTable("ip_dashboard");
         $("#ip_dashboard").dataTable({
             aaData: data,
@@ -240,7 +240,7 @@ dashboard.getIspeed = function() {
     var power = AS+1;
     var result = 0;
 
-    $.get("sh/speed.php", function(data) {
+    $.get("/drop-dash/speed", function(data) {
         // round the speed (float to int);
         // dependent on value of AS, calculate speed in MB or KB ps
         result = Math.floor((data/(Math.pow(1024,power))));
@@ -254,7 +254,7 @@ dashboard.getIspeed = function() {
 }
 
 dashboard.getLoadAverage = function() {
-    $.get("sh/loadavg.php", function(data) {
+    $.get("/drop-dash/loadavg", function(data) {
         $("#cpu-1min").text(data[0][0]);
         $("#cpu-5min").text(data[1][0]);
         $("#cpu-15min").text(data[2][0]);
@@ -265,7 +265,7 @@ dashboard.getLoadAverage = function() {
 }
 
 dashboard.getNumberOfCores = function() {
-    generate_os_data("sh/numberofcores.php", "#core-number");
+    generate_os_data("/drop-dash/numberofcores", "#core-number");
 }
 
 

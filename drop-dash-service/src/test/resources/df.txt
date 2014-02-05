@@ -1,0 +1,11 @@
+Filesystem;Size;Used;Avail;Use%;Mounted
+/dev/sda6;126G;66G;54G;55%;/
+none;4,0K;0;4,0K;0%;/sys/fs/cgroup
+udev;3,9G;4,0K;3,9G;1%;/dev
+tmpfs;799M;1,1M;798M;1%;/run
+none;5,0M;0;5,0M;0%;/run/lock
+none;3,9G;8,3M;3,9G;1%;/run/shm
+none;100M;12K;100M;1%;/run/user
+/dev/sda1;94G;66G;24G;74%;/home
+/dev/sdb5;217G;199G;7,2G;97%;/archive
+

@@ -45,7 +45,9 @@ public class DropdashResource {
 	@Path("/issue")
 	@Timed
 	public Response issue() {
-		return Response.ok(controller.issue()).build();
+		String str = controller.issue();
+		Response build = Response.ok(str).build();
+		return build;
 	}
 
 	@GET
@@ -88,13 +90,6 @@ public class DropdashResource {
 	@Timed
 	public Response speed() {
 		return Response.ok(controller.speed()).build();
-	}
-
-	@GET
-	@Path("/test")
-	@Timed
-	public Response test() {
-		return Response.ok(controller.test()).build();
 	}
 
 	@GET

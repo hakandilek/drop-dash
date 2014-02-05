@@ -50,10 +50,6 @@ public class DropdashController {
 		return shell.speed();
 	}
 
-	public String test() {
-		return shell.test();
-	}
-
 	public String top() {
 		return shell.top();
 	}

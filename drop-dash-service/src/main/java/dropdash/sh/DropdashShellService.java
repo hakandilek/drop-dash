@@ -1,81 +1,90 @@
 package dropdash.sh;
 
+
 public class DropdashShellService {
-	
-	ShellCommand df = new ShellCommand("/bin/df -h|awk '{print $1\",\"$2\",\"$3\",\"$4\",\"$5\",\"$6}'");
+
+	ShellCommand df = new Df(),
+
+	hostname = new Hostname(),
+
+	ip = new Ip(),
+
+	issue = new Issue(),
+
+	loadavg = new Loadavg(),
+
+	mem = new Mem(),
+
+	numberofcores = new Numberofcores(),
+
+	online = new Online(),
+
+	ps = new Ps(),
+
+	speed = new Speed(),
+
+	top = new Top(),
+
+	uptime = new Uptime(),
+
+	users = new Users(),
+
+	whereis = new Whereis();
 
 	public String df() {
 		return df.execute();
 	}
 
 	public String hostname() {
-		// TODO Auto-generated method stub
-		return null;
+		return hostname.execute();
 	}
 
 	public String ip() {
-		// TODO Auto-generated method stub
-		return null;
+		return ip.execute();
 	}
 
 	public String issue() {
-		// TODO Auto-generated method stub
-		return null;
+		return issue.execute();
 	}
 
 	public String loadavg() {
-		// TODO Auto-generated method stub
-		return null;
+		return loadavg.execute();
 	}
 
 	public String mem() {
-		// TODO Auto-generated method stub
-		return null;
+		return mem.execute();
 	}
 
 	public String numberofcores() {
-		// TODO Auto-generated method stub
-		return null;
+		return numberofcores.execute();
 	}
 
 	public String online() {
-		// TODO Auto-generated method stub
-		return null;
+		return online.execute();
 	}
 
 	public String ps() {
-		// TODO Auto-generated method stub
-		return null;
+		return ps.execute();
 	}
 
 	public String speed() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String test() {
-		// TODO Auto-generated method stub
-		return null;
+		return speed.execute();
 	}
 
 	public String top() {
-		// TODO Auto-generated method stub
-		return null;
+		return top.execute();
 	}
 
 	public String uptime() {
-		// TODO Auto-generated method stub
-		return null;
+		return uptime.execute();
 	}
 
 	public String users() {
-		// TODO Auto-generated method stub
-		return null;
+		return users.execute();
 	}
 
 	public String whereis() {
-		// TODO Auto-generated method stub
-		return null;
+		return whereis.execute();
 	}
 
 }
