@@ -19,6 +19,7 @@ public class FilterTest {
 	private String online;
 	private String ps;
 	private String users;
+	private String uptime;
 
 	@Before
 	public void setUp() throws Exception {
@@ -27,6 +28,7 @@ public class FilterTest {
 		online = load("online.txt");
 		ps = load("ps.txt");
 		users = load("users.txt");
+		uptime = load("uptime.txt");
 	}
 
 	private String load(String res) throws Exception {
@@ -160,4 +162,13 @@ public class FilterTest {
 			fail(e + "");
 		}
 	}
+	
+	@Test
+	public void uptime() {
+		String str = new Uptime().apply(uptime);
+		assertNotNull(str);
+		assertEquals("\"9 hours 54 minutes\"", str);
+	}
+
+
 }
