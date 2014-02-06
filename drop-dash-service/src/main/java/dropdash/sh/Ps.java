@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 public class Ps extends FilteredCommand {
 
 	public Ps() {
-		super("ps aux|awk \'NR>1{print $1\";\"$2\";\"$3\";\"$4\";\"$5\";\"$6\";\"$7\";\"$8\";\"$9\";\"$10\";\"$11}\'");
+		super("/bin/ps aux | /usr/bin/awk \'NR>1{print $1\";\"$2\";\"$3\";\"$4\";\"$5\";\"$6\";\"$7\";\"$8\";\"$9\";\"$10\";\"$11}\'");
 	}
 
 	@Override

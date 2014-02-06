@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 public class Df extends FilteredCommand {
 
 	public Df() {
-		super("/bin/df -h|awk '{print $1\";\"$2\";\"$3\";\"$4\";\"$5\";\"$6}'");
+		super("/bin/df -h|/usr/bin/awk '{print $1\";\"$2\";\"$3\";\"$4\";\"$5\";\"$6}'");
 	}
 
 	@Override

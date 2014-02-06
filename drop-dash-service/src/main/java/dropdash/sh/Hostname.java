@@ -5,7 +5,7 @@ package dropdash.sh;
 public class Hostname extends FilteredCommand {
 
 	public Hostname() {
-		super("hostname");
+		super("/bin/hostname");
 	}
 
 	@Override
