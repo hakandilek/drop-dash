@@ -1,6 +1,5 @@
 package dropdash.sh;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -21,12 +20,7 @@ public class Df extends FilteredCommand {
 				output.add(semicolSplit(line));
 			}
 		}
-		try {
-			return json(output);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
+		return json(output);
 	}
 
 }

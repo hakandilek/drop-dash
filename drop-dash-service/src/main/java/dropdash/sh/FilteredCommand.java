@@ -1,22 +1,30 @@
 package dropdash.sh;
 
-import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.yammer.dropwizard.json.ObjectMapperFactory;
 
 public abstract class FilteredCommand extends ShellCommand implements Function<String, String> {
 
-	ObjectMapper json = new ObjectMapperFactory().build();
+	private static final Logger log = LoggerFactory
+			.getLogger(FilteredCommand.class);
 
-	Splitter lineSplitter = Splitter.on("\n").trimResults().omitEmptyStrings();
-	Splitter commaSplitter = Splitter.on(',').trimResults();
-	Splitter semicolSplitter = Splitter.on(';').trimResults();
-	Splitter spaceSplitter = Splitter.on(' ').trimResults().omitEmptyStrings();
+	static ObjectMapper json = new ObjectMapperFactory().build();
+
+	static Splitter lineSplitter = Splitter.on("\n").trimResults().omitEmptyStrings();
+	static Splitter commaSplitter = Splitter.on(',').trimResults();
+	static Splitter semicolSplitter = Splitter.on(';').trimResults();
+	static Splitter spaceSplitter = Splitter.on(' ').trimResults().omitEmptyStrings();
+	static Joiner spaceJoiner = Joiner.on(' ').skipNulls();
 
 
 	public FilteredCommand(String shell, String command) {
@@ -29,24 +37,33 @@ public abstract class FilteredCommand extends ShellCommand implements Function<S
 		filter = this;
 	}
 
-	List<String> lineSplit(String input) {
+	static List<String> lineSplit(String input) {
 		return Lists.newArrayList(lineSplitter.split(input));
 	}
 
-	List<String> commaSplit(String input) {
+	static List<String> commaSplit(String input) {
 		return Lists.newArrayList(commaSplitter.split(input));
 	}
 
-	List<String> semicolSplit(String input) {
+	static List<String> semicolSplit(String input) {
 		return Lists.newArrayList(semicolSplitter.split(input));
 	}
 
-	List<String> spaceSplit(String input) {
+	static List<String> spaceSplit(String input) {
 		return Lists.newArrayList(spaceSplitter.split(input));
 	}
 
-	<O> String json(O obj) throws IOException {
-		return json.writeValueAsString(obj);
+	static String spaceJoin(List<String> input) {
+		return spaceJoiner.join(input);
+	}
+
+	static <O> String json(O obj) {
+		try {
+			return json.writeValueAsString(obj);
+		} catch (JsonProcessingException e) {
+			log.error("error on json processing", e);
+			return null;
+		}
 	}
 
 

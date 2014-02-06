@@ -3,7 +3,7 @@ package dropdash.sh;
 
 public class DropdashShellService {
 
-	ShellCommand df = new Df(),
+	Command df = new Df(),
 
 	hostname = new Hostname(),
 

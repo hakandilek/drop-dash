@@ -1,6 +1,5 @@
 package dropdash.sh;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -8,7 +7,8 @@ import com.google.common.collect.Lists;
 public class Users extends FilteredCommand {
 
 	public Users() {
-		super("/usr/bin/awk -F: '{ if ($3<=499) print \"system,\"$1\";\"$6; else print \"user,\"$1\";\"$6; }' < /etc/passwd");
+		super(
+				"/usr/bin/awk -F: '{ if ($3<=499) print \"system,\"$1\";\"$6; else print \"user,\"$1\";\"$6; }' < /etc/passwd");
 	}
 
 	@Override
@@ -19,12 +19,7 @@ public class Users extends FilteredCommand {
 			String line = lines.get(i);
 			output.add(semicolSplit(line));
 		}
-		try {
-			return json(output);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
+		return json(output);
 	}
 
 }

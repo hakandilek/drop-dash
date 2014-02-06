@@ -1,9 +1,8 @@
 package dropdash.sh;
 
-import java.io.IOException;
-import java.util.List;
+import static java.lang.Math.floor;
 
-import static java.lang.Math.*;
+import java.util.List;
 
 public class Uptime extends FilteredCommand {
 
@@ -36,13 +35,8 @@ public class Uptime extends FilteredCommand {
 			sb.append(mins).append(" minutes");
 		}
 
-		try {
-			String value = sb.toString();
-			return json(value);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
+		String value = sb.toString();
+		return json(value);
 	}
 
 }

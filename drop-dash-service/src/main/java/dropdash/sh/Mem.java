@@ -1,6 +1,5 @@
 package dropdash.sh;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Mem extends FilteredCommand {
@@ -14,12 +13,7 @@ public class Mem extends FilteredCommand {
 		List<String> lines = lineSplit(input);
 		String line = lines.get(1);
 		List<String> out = semicolSplit(line);
-		try {
-			return json(out);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
+		return json(out);
 	}
 
 }

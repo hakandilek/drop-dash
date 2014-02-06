@@ -1,6 +1,5 @@
 package dropdash.sh;
 
-import java.io.IOException;
 
 public class Issue extends FilteredCommand {
 
@@ -10,12 +9,7 @@ public class Issue extends FilteredCommand {
 
 	@Override
 	public String apply(String input) {
-		try {
-			return json(input);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
+		return json(input);
 	}
 
 }
