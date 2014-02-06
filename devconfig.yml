@@ -1,6 +1,3 @@
-requestCacheLimit: 100
-reportCacheLimit: 1000
-
 # HTTP-specific options.
 http:
 
