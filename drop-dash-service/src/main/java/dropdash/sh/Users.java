@@ -7,8 +7,7 @@ import com.google.common.collect.Lists;
 public class Users extends FilteredCommand {
 
 	public Users() {
-		super(
-				"/usr/bin/awk -F: '{ if ($3<=499) print \"system,\"$1\";\"$6; else print \"user,\"$1\";\"$6; }' < /etc/passwd");
+		super("/usr/bin/awk -F: '{ if ($3<=499) print \"system;\"$1\";\"$6; else print \"user;\"$1\";\"$6; }' < /etc/passwd");
 	}
 
 	@Override
