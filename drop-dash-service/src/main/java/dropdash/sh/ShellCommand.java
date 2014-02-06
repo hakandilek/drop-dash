@@ -5,9 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Function;
 
 public class ShellCommand implements Command {
+
+	private static final Logger log = LoggerFactory.getLogger(ShellCommand.class);
 
 	private String[] command;
 	protected Function<String, String> filter;
@@ -69,43 +74,36 @@ public class ShellCommand implements Command {
 	class ProcessRunner {
 
 		private Process process;
-		private StreamReader outReader;
-		private StreamReader errReader;
+		private InputStream inStream;
+		private InputStream erStream;
+		private String err;
+		private String out;
 
 		public ProcessRunner(String[] command) throws IOException {
 			process = new ProcessBuilder(command).start();
-			outReader = new StreamReader(process.getInputStream());
-			errReader = new StreamReader(process.getInputStream());
-			outReader.start();
-			errReader.start();
+			inStream = process.getInputStream();
+			erStream = process.getErrorStream();
 		}
 
 		public String getError() {
-			return errReader.getOutput();
+			return err;
 		}
 
 		public String getOutput() {
-			return outReader.getOutput();
+			return out;
 		}
 
 		public int waitFor() throws InterruptedException {
-			return process.waitFor();
+			int res = process.waitFor();
+
+			out = read(inStream);
+			err = read(erStream);
+
+			return res;
 		}
 
-	}
-
-	class StreamReader extends Thread {
-
-		private InputStream in;
-		private StringBuffer sb;
-
-		public StreamReader(InputStream inputStream) {
-			this.in = inputStream;
-			this.sb = new StringBuffer();
-		}
-
-		@Override
-		public void run() {
+		private String read(InputStream in) {
+			StringBuffer sb = new StringBuffer();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			String line = "";
 			try {
@@ -113,11 +111,8 @@ public class ShellCommand implements Command {
 					sb.append(line + "\n");
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("cannot read InputStream", e);
 			}
-		}
-
-		public String getOutput() {
 			return sb.toString();
 		}
 
