@@ -1,21 +1,29 @@
-# linux-dash
+# drop-dash
 
+Java port of the linux-dash monitoring tool using the Dropwizard framework.
+ 
 A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in
 the app and go!
 
-[View Demo](http://afaq.dreamhosters.com/linux-dash/)
+[View original linux-dash Demo](http://afaq.dreamhosters.com/linux-dash/)
 
 ![Demonstration](http://afaq.dreamhosters.com/linux-dash.PNG)
 
-## Installation
+## Dropwizard integration
 
-1. Make sure you have `php5-curl` installed and enabled
-2. Download the zip/repo/package
-3. Place it in `/var/www/` (for Apache)
-4. Secure access to the page via `.htaccess` or method of your choice
+Simply use the `DropwizardBundle` in your `Service.initialize` method.
 
-**Please note: If you would like to limit access to the webpage, please add
-`.htaccess` or other security measure.**
+    public void initialize(Bootstrap<DropdashConfiguration> bootstrap) {
+        bootstrap.addBundle(new DropdashBundle<DropdashConfiguration>() {
+            @Override
+            public HttpConfiguration getHttp(DropdashConfiguration configuration) {
+                return configuration.getHttp();
+            }
+        });
+    }
+
+**Please note: If you would like to limit access to the webpage, please use a Dropwizard 
+`Authenticator` to secure the resources.**
 
 ## Support
 
@@ -32,5 +40,6 @@ the app and go!
 * Modern browsers
 
 ## Credits:
+* [linux-dash](https://github.com/afaqurk/linux-dash)
 * [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/)
 * [Bootstrap](http://getbootstrap.com)
