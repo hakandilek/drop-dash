@@ -29,7 +29,7 @@ public class DropdashShellService {
 
 	users = new Users(),
 
-	whereis = new Whereis();
+	where = new Where();
 
 	public String df() {
 		return df.execute();
@@ -83,8 +83,8 @@ public class DropdashShellService {
 		return users.execute();
 	}
 
-	public String whereis() {
-		return whereis.execute();
+	public String where() {
+		return where.execute();
 	}
 
 }

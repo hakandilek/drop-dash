@@ -62,8 +62,8 @@ public class DropdashController {
 		return shell.users();
 	}
 
-	public String whereis() {
-		return shell.whereis();
+	public String where() {
+		return shell.where();
 	}
 
 }

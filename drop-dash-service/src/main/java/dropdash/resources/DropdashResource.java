@@ -114,9 +114,9 @@ public class DropdashResource {
 	}
 
 	@GET
-	@Path("/whereis")
+	@Path("/where")
 	@Timed
 	public Response whereis() {
-		return Response.ok(controller.whereis()).build();
+		return Response.ok(controller.where()).build();
 	}
 }

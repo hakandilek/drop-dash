@@ -20,8 +20,6 @@ public class FilterTest {
 	private String ps;
 	private String users;
 	private String uptime;
-	private String whereis;
-	private String whereis_out;
 
 	@Before
 	public void setUp() throws Exception {
@@ -31,8 +29,6 @@ public class FilterTest {
 		ps = load("ps.txt");
 		users = load("users.txt");
 		uptime = load("uptime.txt");
-		whereis = load("whereis.txt");
-		whereis_out = load("whereis.out.txt");
 	}
 
 	private String load(String res) throws Exception {
@@ -173,13 +169,5 @@ public class FilterTest {
 		assertNotNull(str);
 		assertEquals("\"9 hours 54 minutes\"", str);
 	}
-
-	@Test
-	public void whereis() {
-		String str = new Whereis().apply(whereis);
-		assertNotNull(str);
-		assertEquals(whereis_out, str);
-	}
-
 
 }
