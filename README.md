@@ -49,6 +49,7 @@ Simply use the `DropwizardBundle` in your `Service.initialize` method.
 * Modern browsers
 
 ## Credits:
+* [dropwizard](http://www.dropwizard.io/)
 * [linux-dash](https://github.com/afaqurk/linux-dash)
 * [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/)
 * [Bootstrap](http://getbootstrap.com)
