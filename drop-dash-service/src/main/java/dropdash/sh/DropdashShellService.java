@@ -29,7 +29,9 @@ public class DropdashShellService {
 
 	users = new Users(),
 
-	where = new Where();
+	where = new Where(),
+	
+	netstat = new Netstat();
 
 	public String df() {
 		return df.execute();
@@ -85,6 +87,10 @@ public class DropdashShellService {
 
 	public String where() {
 		return where.execute();
+	}
+
+	public String netstat() {
+		return netstat.execute();
 	}
 
 }

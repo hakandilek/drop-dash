@@ -66,4 +66,8 @@ public class DropdashController {
 		return shell.where();
 	}
 
+	public String netstat() {
+		return shell.netstat();
+	}
+
 }

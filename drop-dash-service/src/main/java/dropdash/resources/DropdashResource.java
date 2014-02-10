@@ -119,4 +119,11 @@ public class DropdashResource {
 	public Response whereis() {
 		return Response.ok(controller.where()).build();
 	}
+
+	@GET
+	@Path("/netstat")
+	@Timed
+	public Response netstat() {
+		return Response.ok(controller.netstat()).build();
+	}
 }
