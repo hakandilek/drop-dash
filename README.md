@@ -28,11 +28,25 @@ Simply use the `DropwizardBundle` in your `Service.initialize` method.
             public HttpConfiguration getHttp(DropdashConfiguration configuration) {
                 return configuration.getHttp();
             }
+            @Override
+            public String getAuthenticationRealm(DropdashConfiguration configuration) {
+                return configuration.getAuthenticationRealm();
+            }
+
+            @Override
+            public String getAuthenticationUser(DropdashConfiguration configuration) {
+                return configuration.getAuthenticationUser();
+            }
+
+            @Override
+            public String getAuthenticationPassword(DropdashConfiguration configuration) {
+                return configuration.getAuthenticationPassword();
+            }
         });
     }
 
-**Please note: If you would like to limit access to the webpage, please use a Dropwizard 
-`Authenticator` to secure the resources.**
+
+And update your `config.yml` file for authentication details.
 
 ## Support
 

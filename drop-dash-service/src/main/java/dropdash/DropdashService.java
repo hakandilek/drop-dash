@@ -14,6 +14,21 @@ public class DropdashService extends Service<DropdashConfiguration> {
 			public HttpConfiguration getHttp(DropdashConfiguration configuration) {
 				return configuration.getHttp();
 			}
+
+			@Override
+			public String getAuthenticationRealm(DropdashConfiguration configuration) {
+				return configuration.getAuthenticationRealm();
+			}
+
+			@Override
+			public String getAuthenticationUser(DropdashConfiguration configuration) {
+				return configuration.getAuthenticationUser();
+			}
+
+			@Override
+			public String getAuthenticationPassword(DropdashConfiguration configuration) {
+				return configuration.getAuthenticationPassword();
+			}
 		});
 	}
 
