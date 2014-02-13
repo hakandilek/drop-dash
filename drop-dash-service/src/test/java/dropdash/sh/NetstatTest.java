@@ -29,7 +29,7 @@ public class NetstatTest {
 		assertNotNull(list);
 		assertTrue(list.length >0);
 		assertNotNull(list[0]);
-		assertEquals(7, list[0].length);
+		assertEquals(2, list[0].length);
 	}
 
 	protected <O> String json(O obj) throws IOException {
