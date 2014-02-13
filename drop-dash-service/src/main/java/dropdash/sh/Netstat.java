@@ -7,7 +7,10 @@ import com.google.common.collect.Lists;
 public class Netstat extends FilteredCommand {
 
 	public Netstat() {
-		super("/bin/netstat -tunp|/usr/bin/awk '{print $1\";\"$2\";\"$3\";\"$4\";\"$5\";\"$6\";\"$7}'");
+		super("/bin/netstat -ntu "
+				+ "| /usr/bin/awk 'NR>2 {sub(/:[^:]+$/, \"\"); print $5}' "
+				+ "| /usr/bin/sort | /usr/bin/uniq -c "
+				+ "| /usr/bin/awk '{print $1\";\"$2}'");
 	}
 
 	@Override
