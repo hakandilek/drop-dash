@@ -28,7 +28,7 @@ public class Where implements Command {
 
 		List<String> bins = spaceSplit(binaries);
 		for (String binary : bins) {
-			Command which = new ShellCommand("/usr/bin/which " + binary);
+			Command which = new ShellCommand("command -v " + binary);
 			String location = which.execute();
 			error.append(which.getError());
 			if (Strings.isNullOrEmpty(location)) {
