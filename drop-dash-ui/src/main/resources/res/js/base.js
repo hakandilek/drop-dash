@@ -1,20 +1,19 @@
 $(document).ready(function() {
-	
-	// enable popovers
-	$(".pop").popover(); 
-	
-    // Smooth scrolling for links.
-    $(".mainnav").on("click", ".js-smoothscroll", function(event) {
-        event.preventDefault();
-        var target = $(this.hash).parent();
-        pulseElement(target, 8, 400);
+    // enable popovers
+    $(".pop").popover();
 
-        $("html").animate({
-            scrollTop: target.offset().top - 130
-        }, 1000);
-    });
-	
+   // activate tooltips on hover
+   $("[data-toggle='tooltip']").tooltip({trigger: 'hover', placement:'right'});  
+
     dashboard.getAll();
+}).on("click", ".js-smoothscroll", function(event) {
+    event.preventDefault();
+    var target = $(this.hash).parent();
+    pulseElement(target, 8, 400);
+
+    $("html,body").animate({
+        scrollTop: target.offset().top - 130
+    }, 1000);
 }).on("click", ".js-refresh-info", function(event) {
     event.preventDefault();
     var item = event.target.id.split("-").splice(-1)[0];
@@ -71,7 +70,7 @@ function pulseElement(element, times, interval) {
 $( ".row" ).sortable({
       connectWith: ".row",
       handle: ".widget-header",
-      cancel: "",
+      cancel: "#filter-ps",
       cursor: "move",
       opacity: 0.7,
       scrollSensitivity:10,

@@ -1,13 +1,12 @@
-# drop-dash
+# drop-dash (Beta)
+=======
 
 Java port of the linux-dash monitoring tool using the Dropwizard framework.
  
 A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in
 the app and go!
 
-[View original linux-dash Demo](http://afaq.dreamhosters.com/linux-dash/)
-
-[**View Demo**](http://afaq.dreamhosters.com/linux-dash/) | [**View Features**](#features) | [**Installtion Instructions**](#installation) | [**Documentation**](https://github.com/afaqurk/linux-dash/wiki)
+[**View Demo**](http://afaq.dreamhosters.com/linux-dash/) | [**View Features**](#features) | [**Installation Instructions**](#installation) | [**Documentation**](https://github.com/hakandilek/drop-dash/wiki)
 
 ![Demonstration](http://afaq.dreamhosters.com/linux-dash.PNG)
 
@@ -45,7 +44,6 @@ Simply use the `DropwizardBundle` in your `Service.initialize` method.
         });
     }
 
-
 And update your `config.yml` file for authentication details.
 
 ## Support
@@ -67,3 +65,4 @@ And update your `config.yml` file for authentication details.
 * [linux-dash](https://github.com/afaqurk/linux-dash)
 * [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/)
 * [Bootstrap](http://getbootstrap.com)
+* [Font Awesome](http://fontawesome.io/)
