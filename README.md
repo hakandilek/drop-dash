@@ -55,10 +55,9 @@ And update your `config.yml` file for authentication details.
     * Debian 6, 7
     * Ubuntu 11.04+
     * Linux Mint 16+
-* Apache 2
-* Nginx
-* PHP 5
 * Modern browsers
+* Dropwizard 0.6.2
+* Java 6+
 
 ## Credits:
 * [dropwizard](http://www.dropwizard.io/)
