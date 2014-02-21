@@ -18,13 +18,24 @@ function destroy_dataTable(table_id) {
 //DataTables
 //Sort file size data.
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+    "file-size-units": {
+        K : 1024,
+        M : Math.pow(1024, 2),
+        G : Math.pow(1024, 3),
+        T : Math.pow(1024, 4),
+        P : Math.pow(1024, 5),
+        E : Math.pow(1024, 6)
+    },
+
     "file-size-pre": function(a) {
         var x = a.substring(0, a.length - 1);
-        var x_unit = (a.substring(a.length - 1, a.length) === "M" ?
-                      1000 : (a.substring(a.length - 1, a.length) === "G" ?
-                              1000000 : 1));
-
-        return parseInt(x * x_unit, 10);
+        var x_unit = a.substring(a.length - 1, a.length);
+        if(jQuery.fn.dataTableExt.oSort['file-size-units'][x_unit]) {
+            return parseInt(x * jQuery.fn.dataTableExt.oSort['file-size-units'][x_unit], 10);
+        }
+        else {
+            return parseInt(x + x_unit, 10);
+        }
     },
 
     "file-size-asc": function(a, b) {
@@ -253,7 +264,8 @@ dashboard.getWhereIs = function() {
                 { sTitle: "Software" },
                 { sTitle: "Installation" }
             ],
-            bPaginate: false,
+            bPaginate: true,
+			iDisplayLength: 6,
             bFilter: false,
             aaSorting: [[1, "desc"]],
             bAutoWidth: false,
@@ -282,6 +294,27 @@ dashboard.getIp = function() {
             sPaginationType: "two_button",
             bFilter: false,
             bAutoWidth: true,
+            bInfo: false
+        }).fadeIn();
+    }, "json");
+}
+
+dashboard.getPing = function() {
+    $.get("sh/ping.php", function(data) {
+        destroy_dataTable("ping_dashboard");
+
+        $("#ping_dashboard").dataTable({
+            aaData: data,
+            aoColumns: [
+                { sTitle: "Host" },
+                { sTitle: "Time (in ms)" }
+            ],
+            aaSorting: [[0, "desc"]],
+            bPaginate: true,
+            sPaginationType: "full_numbers",
+            bFilter: true,
+            sDom: "lrtip",
+            bAutoWidth: false,
             bInfo: false
         }).fadeIn();
     }, "json");
@@ -344,8 +377,16 @@ dashboard.getDnsmasqLeases = function() {
             bInfo: false
         }).fadeIn();
     }, "json");
-  console.log('get DNSMASQ');
 }
+
+dashboard.getBandwidth = function() {
+    $.get("sh/bandwidth.php", function(data) {
+      $('#bw-tx').text(data.tx);
+      $('#bw-rx').text(data.rx);
+    },'json');
+
+}
+
 
 /**
  * Refreshes all widgets. Does not call itself recursively.
@@ -371,5 +412,7 @@ dashboard.fnMap = {
     ispeed: dashboard.getIspeed,
     cpu: dashboard.getLoadAverage,
     netstat: dashboard.getNetStat,
-    dnsmasqleases: dashboard.getDnsmasqLeases
+    dnsmasqleases: dashboard.getDnsmasqLeases,
+    bandwidth: dashboard.getBandwidth,
+    ping: dashboard.getPing
 };

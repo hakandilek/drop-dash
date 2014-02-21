@@ -1,6 +1,6 @@
 authenticationRealm: drop-dash
 authenticationUser: dropuser
-authenticationPassword: 1a1dc91c907325c69271ddf0c944bc72
+authenticationPassword: 5ef7b8db495e85677e908ec3d368a790
 
 # HTTP-specific options.
 http:
