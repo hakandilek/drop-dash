@@ -1,6 +1,6 @@
 // Gets data from provided url and updates DOM element.
 function generate_os_data(url, element) {
-    $.get(url, function(data) {
+    $.get(url, function (data) {
         $(element).text(data);
     }, "json");
 }
@@ -19,18 +19,18 @@ function destroy_dataTable(table_id) {
 //Sort file size data.
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {
     "file-size-units": {
-        K : 1024,
-        M : Math.pow(1024, 2),
-        G : Math.pow(1024, 3),
-        T : Math.pow(1024, 4),
-        P : Math.pow(1024, 5),
-        E : Math.pow(1024, 6)
+        K: 1024,
+        M: Math.pow(1024, 2),
+        G: Math.pow(1024, 3),
+        T: Math.pow(1024, 4),
+        P: Math.pow(1024, 5),
+        E: Math.pow(1024, 6)
     },
 
-    "file-size-pre": function(a) {
+    "file-size-pre": function (a) {
         var x = a.substring(0, a.length - 1);
         var x_unit = a.substring(a.length - 1, a.length);
-        if(jQuery.fn.dataTableExt.oSort['file-size-units'][x_unit]) {
+        if (jQuery.fn.dataTableExt.oSort['file-size-units'][x_unit]) {
             return parseInt(x * jQuery.fn.dataTableExt.oSort['file-size-units'][x_unit], 10);
         }
         else {
@@ -38,11 +38,11 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
         }
     },
 
-    "file-size-asc": function(a, b) {
+    "file-size-asc": function (a, b) {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     },
 
-    "file-size-desc": function(a, b) {
+    "file-size-desc": function (a, b) {
         return ((a < b) ? 1 : ((a > b) ? -1 : 0));
     }
 });
@@ -50,16 +50,16 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 //DataTables
 //Sort numeric data which has a percent sign with it.
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-    "percent-pre": function(a) {
+    "percent-pre": function (a) {
         var x = (a === "-") ? 0 : a.replace(/%/, "");
         return parseFloat(x);
     },
 
-    "percent-asc": function(a, b) {
+    "percent-asc": function (a, b) {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     },
 
-    "percent-desc": function(a, b) {
+    "percent-desc": function (a, b) {
         return ((a < b) ? 1 : ((a > b) ? -1 : 0));
     }
 });
@@ -67,7 +67,7 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 //DataTables
 //Sort IP addresses
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-    "ip-address-pre": function(a) {
+    "ip-address-pre": function (a) {
         // split the address into octets
         //
         var x = a.split('.');
@@ -81,25 +81,25 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 
         // build the resulting IP
         var r = '';
-        for(var i=0; i<x.length; i++)
-            r = r + zeroPad(x[i],3);
+        for (var i = 0; i < x.length; i++)
+            r = r + zeroPad(x[i], 3);
 
         // return the formatted IP address
         //
         return r;
     },
 
-    "ip-address-asc": function(a, b) {
+    "ip-address-asc": function (a, b) {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     },
 
-    "ip-address-desc": function(a, b) {
+    "ip-address-desc": function (a, b) {
         return ((a < b) ? 1 : ((a > b) ? -1 : 0));
     }
 });
 
 /*******************************
-  Data Call Functions
+ Data Call Functions
  *******************************/
 
 var dashboard = {};
@@ -132,7 +132,7 @@ dashboard.getPs = function() {
             bInfo: false
         }).fadeIn();
 
-        $("#filter-ps").on("keyup", function() {
+        $("#filter-ps").on("keyup", function () {
             psTable.fnFilter(this.value);
         });
     }, "json");
@@ -148,7 +148,9 @@ dashboard.getNetStat = function() {
                 { sTitle: "Number of Connections" },
                 { sTitle: "IP Address" }
             ],
-            aaSorting: [[0, "desc"]],
+            aaSorting: [
+                [0, "desc"]
+            ],
             bPaginate: true,
             sPaginationType: "full_numbers",
             bFilter: true,
@@ -171,7 +173,9 @@ dashboard.getUsers = function() {
                 { sTitle: "User" },
                 { sTitle: "Home" }
             ],
-            aaSorting: [[0, "desc"]],
+            aaSorting: [
+                [0, "desc"]
+            ],
             iDisplayLength: 5,
             bPaginate: true,
             sPaginationType: "full_numbers",
@@ -195,7 +199,9 @@ dashboard.getOnline = function() {
                 { sTitle: "Login At" },
                 { sTitle: "Idle" }
             ],
-            aaSorting: [[0, "desc"]],
+            aaSorting: [
+                [0, "desc"]
+            ],
             iDisplayLength: 5,
             bPaginate: true,
             sPaginationType: "full_numbers",
@@ -265,23 +271,26 @@ dashboard.getWhereIs = function() {
                 { sTitle: "Installation" }
             ],
             bPaginate: true,
-			iDisplayLength: 6,
+            iDisplayLength: 6,
             bFilter: false,
-            aaSorting: [[1, "desc"]],
+            aaSorting: [
+                [1, "desc"]
+            ],
             bAutoWidth: false,
             bInfo: false
         }).fadeIn();
     }, "json");
 }
 
-dashboard.getOs = function() {
+dashboard.getOs = function () {
     generate_os_data("/drop-dash/issue", "#os-info");
     generate_os_data("/drop-dash/hostname", "#os-hostname");
+    generate_os_data("/drop-dash/time", "#os-time");
     generate_os_data("/drop-dash/uptime", "#os-uptime");
 }
 
-dashboard.getIp = function() {
-    $.get("/drop-dash/ip", function(data) {
+dashboard.getIp = function () {
+    $.get("/drop-dash/ip", function (data) {
         destroy_dataTable("ip_dashboard");
         $("#ip_dashboard").dataTable({
             aaData: data,
@@ -289,8 +298,8 @@ dashboard.getIp = function() {
                 { sTitle: "Interface" },
                 { sTitle: "IP" }
             ],
-			iDisplayLength: 5,
-			bPaginate: true,
+            iDisplayLength: 5,
+            bPaginate: true,
             sPaginationType: "two_button",
             bFilter: false,
             bAutoWidth: true,
@@ -299,8 +308,8 @@ dashboard.getIp = function() {
     }, "json");
 }
 
-dashboard.getPing = function() {
-    $.get("sh/ping.php", function(data) {
+dashboard.getPing = function () {
+    $.get("/drop-dash/ping", function (data) {
         destroy_dataTable("ping_dashboard");
 
         $("#ping_dashboard").dataTable({
@@ -309,7 +318,9 @@ dashboard.getPing = function() {
                 { sTitle: "Host" },
                 { sTitle: "Time (in ms)" }
             ],
-            aaSorting: [[0, "desc"]],
+            aaSorting: [
+                [0, "desc"]
+            ],
             bPaginate: true,
             sPaginationType: "full_numbers",
             bFilter: true,
@@ -320,19 +331,19 @@ dashboard.getPing = function() {
     }, "json");
 }
 
-dashboard.getIspeed = function() {
+dashboard.getIspeed = function () {
     var rate = $("#ispeed-rate");
 
     // 0 = KB
     // 1 = MB
     var AS = 0;
-    var power = AS+1;
+    var power = AS + 1;
     var result = 0;
 
     $.get("/drop-dash/speed", function(data) {
         // round the speed (float to int);
         // dependent on value of AS, calculate speed in MB or KB ps
-        result = Math.floor((data/(Math.pow(1024,power))));
+        result = Math.floor((data / (Math.pow(1024, power))));
         // update rate of speed on widget
         rate.text(result);
 
@@ -379,11 +390,11 @@ dashboard.getDnsmasqLeases = function() {
     }, "json");
 }
 
-dashboard.getBandwidth = function() {
-    $.get("sh/bandwidth.php", function(data) {
-      $('#bw-tx').text(data.tx);
-      $('#bw-rx').text(data.rx);
-    },'json');
+dashboard.getBandwidth = function () {
+    $.get("/drop-dash/bandwidth", function (data) {
+        $('#bw-tx').text(data.tx);
+        $('#bw-rx').text(data.rx);
+    }, 'json');
 
 }
 
@@ -391,7 +402,7 @@ dashboard.getBandwidth = function() {
 /**
  * Refreshes all widgets. Does not call itself recursively.
  */
-dashboard.getAll = function() {
+dashboard.getAll = function () {
     for (var item in dashboard.fnMap) {
         if (dashboard.fnMap.hasOwnProperty(item) && item !== "all") {
             dashboard.fnMap[item]();

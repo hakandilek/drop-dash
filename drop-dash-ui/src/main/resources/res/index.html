@@ -24,6 +24,16 @@
                 <div class="container">
                     <a class="brand" href="./">linux-dash</a>
                     <div class="nav-collapse"></div>
+
+		    <ul class="nav pull-right">
+                        <li>
+                            <a target="_blank" href="http://github.com/afaqurk/linux-dash">
+				<i class="lead icon-github-sign"></i> 
+				<span class="lead">Contribute on GitHub</span>
+			    </a>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </div>
@@ -50,13 +60,34 @@
                             <a class="js-smoothscroll" href="#refresh-ispeed"><i class="icon-exchange"></i><span>Network</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i id="closed-widget-count">0</i> <span>Closed Widgets <i class="icon-caret-down"></i></span></a>
-                            <ul class="dropdown-menu" id="closed-widget-list"></ul>
-                        </li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        <li>
-                            <a target="_blank" href="http://github.com/afaqurk/linux-dash"><i class="lead icon-github-sign"></i> <span class="lead">Contribute on GitHub</span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			        <i id="closed-widget-count">0</i> 
+				<span> Closed Widgets <i class="icon-caret-down"></i></span>
+			    </a>
+                            <ul class="dropdown-menu" id="closed-widget-list">
+			        <li id="close-all-widgets">
+				    <a> <i class="icon-remove lead pull-left"></i> Close All Widgets</a>
+				</li>
+				<li id="open-all-widgets">
+				    <a> <i class="icon-plus lead pull-left"></i> Open All Widgets</a>
+				</li>
+				<li class=""><hr></li>
+			    </ul>
+			</li>
+			<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			        <i id="phpinfo-widget-what" class="icon-info-sign"></i>
+				<span>PHPInfo <i class="icon-caret-down"></i></span>
+			    </a>
+                            <ul class="dropdown-menu" id="phpinfo-widget-opt">
+                                <li><a href="sh/phpinfo.php?what=-1" target="_blank"><i class="icon-info"></i> - INFO_ALL</a></li>
+                                <li><a href="sh/phpinfo.php?what=1" target="_blank"><i class="icon-info"></i> - INFO_GENERAL</a></li>
+                                <li><a href="sh/phpinfo.php?what=4" target="_blank"><i class="icon-info"></i> - INFO_CONFIGURATION</a></li>
+                                <li><a href="sh/phpinfo.php?what=8" target="_blank"><i class="icon-info"></i> - INFO_MODULES</a></li>
+                                <li><a href="sh/phpinfo.php?what=16" target="_blank"><i class="icon-info"></i> - INFO_ENVIRONMENT</a></li>
+                                <li><a href="sh/phpinfo.php?what=32" target="_blank"><i class="icon-info"></i> - INFO_VARIABLES</a></li>
+                                <li><a href="sh/phpinfo.php?what=2" target="_blank"><i class="icon-info"></i> - INFO_CREDITS</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div><!-- /container -->
@@ -71,7 +102,10 @@
                             A simple web dashboard to monitor your server.
                         </div>
                     </div>
-                    <div id="widgets" class="row">
+                    <div id="widgets" class="">
+
+		      <div class="row">
+
                         <div class="span3">
                             <div id="general-info-widget" class="widget widget-table action-table">
                                 <div class="widget-header">
@@ -86,6 +120,7 @@
                                     <div style="text-align:center;">
                                         <b>OS:</b> <span class="" id="os-info"></span><br>
                                         <b>Uptime:</b> <span id="os-uptime"></span><br>
+                                        <b>Server Time:</b> <span class="" id="os-time"></span><br>
                                         <b>Hostname:</b> <span class="" id="os-hostname"></span><br>
                                         <br>
                                         <br>
@@ -93,7 +128,8 @@
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div>
-                        <div class="span3">
+
+                        <div class="span4">
                             <div id="load-average-widget" class="widget">
                                 <div class="widget-header">
                                     <i class="icon-laptop"></i>
@@ -123,7 +159,8 @@
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div>
-                        <div class="span6">
+
+                        <div class="span5">
                             <div id="ram-widget" class="widget widget-nopad">
                                 <div class="widget-header">
                                     <i class="icon-list-alt"></i>
@@ -153,8 +190,9 @@
                                 </div>
                             </div>
                         </div>
-                    
+                      </div><!-- ./row -->
 
+		      <div class="row">			
                         <div class="span6">
                             <div id="disk-usage-widget" class="widget widget-table">
                                 <div class="widget-header">
@@ -183,7 +221,9 @@
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div><!-- /span -->
-                    
+                      </div><!--./row -->
+    
+                      <div class="row">
                         <div class="span6">
                             <div id="dns-lease-widget" class="widget widget-table">
                                 <div class="widget-header">
@@ -223,12 +263,15 @@
                                 </div><!-- /widget-header -->
                                 <div class="widget-content">
                                     <div style="padding:10px; text-align: center;">
-                                        <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate">0</span> <span class="lead">Mbps</span>
+                                        <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate">0</span> 
+					<span class="lead">Mbps</span>
                                     </div>
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div><!-- /span -->
-                    
+                      </div> <!-- ./row -->
+
+                      <div class="row">
                         <div class="span4">
                             <div id="netstat-widget" class="widget widget-table">
                                 <div class="widget-header">
@@ -273,7 +316,9 @@
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div><!-- /span -->
-                    
+                       </div><!--./row -->
+
+                      <div class="row">
                         <div class="span6">
                             <div id="users-widget" class="widget widget-table action-table">
                                 <div class="widget-header">
@@ -302,7 +347,9 @@
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div><!-- /span6 -->
-                    
+                       </div><!--./row -->
+
+                      <div class="row">
                         <div class="span12">
                             <div id="process-widget" class="widget widget-table">
                                 <div class="widget-header">
@@ -320,7 +367,9 @@
                                 </div><!-- /widget-content -->
                             </div><!-- /widget -->
                         </div><!-- /span -->
-                    </div><!-- /row -->
+		       </div><!-- ./row -->
+
+                    </div><!-- #/widgets -->
                 </div>
             </div><!-- /main-inner -->
         </div><!-- /main -->
