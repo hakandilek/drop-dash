@@ -27,6 +27,8 @@ public class DropdashShellService {
 
 	speed = new Speed(),
 
+	time = new Time(),
+
 	top = new Top(),
 
 	uptime = new Uptime(),
@@ -103,6 +105,10 @@ public class DropdashShellService {
 
 	public String ping() {
 		return ping.execute();
+	}
+
+	public String time() {
+		return time.execute();
 	}
 
 }

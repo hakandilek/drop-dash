@@ -109,6 +109,13 @@ public class DropdashResource {
 	}
 
 	@GET
+	@Path("/time")
+	@Timed
+	public Response time(@Auth Subject subject) {
+		return Response.ok(controller.time()).build();
+	}
+
+	@GET
 	@Path("/top")
 	@Timed
 	public Response top(@Auth Subject subject) {

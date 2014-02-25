@@ -78,4 +78,8 @@ public class DropdashController {
 		return shell.ping();
 	}
 
+	public String time() {
+		return shell.time();
+	}
+
 }
