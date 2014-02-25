@@ -70,4 +70,8 @@ public class DropdashController {
 		return shell.netstat();
 	}
 
+	public String bandwidth() {
+		return shell.bandwidth();
+	}
+
 }

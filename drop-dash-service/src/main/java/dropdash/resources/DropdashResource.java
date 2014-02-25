@@ -30,6 +30,13 @@ public class DropdashResource {
 	}
 
 	@GET
+	@Path("/bandwidth")
+	@Timed
+	public Response bandwidth(@Auth Subject subject) {
+		return Response.ok(controller.bandwidth()).build();
+	}
+
+	@GET
 	@Path("/hostname")
 	@Timed
 	public Response hostname(@Auth Subject subject) {

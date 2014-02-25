@@ -5,6 +5,8 @@ public class DropdashShellService {
 
 	Command df = new Df(),
 
+	bandwidth = new Bandwidth(),
+
 	hostname = new Hostname(),
 
 	ip = new Ip(),
@@ -91,6 +93,10 @@ public class DropdashShellService {
 
 	public String netstat() {
 		return netstat.execute();
+	}
+
+	public String bandwidth() {
+		return bandwidth.execute();
 	}
 
 }
