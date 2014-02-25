@@ -46,6 +46,8 @@ Simply use the `DropwizardBundle` in your `Service.initialize` method.
 
 And update your `config.yml` file for authentication details.
 
+Note: devconfig.yml has authentication for `dropuser:droppass`.
+
 ## Support
 
 *The information listed here is currently limited and will expand shortly.*
