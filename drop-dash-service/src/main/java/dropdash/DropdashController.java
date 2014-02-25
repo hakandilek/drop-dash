@@ -74,4 +74,8 @@ public class DropdashController {
 		return shell.bandwidth();
 	}
 
+	public String ping() {
+		return shell.ping();
+	}
+
 }

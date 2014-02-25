@@ -88,6 +88,13 @@ public class DropdashResource {
 	}
 
 	@GET
+	@Path("/ping")
+	@Timed
+	public Response ping(@Auth Subject subject) {
+		return Response.ok(controller.ping()).build();
+	}
+
+	@GET
 	@Path("/ps")
 	@Timed
 	public Response ps(@Auth Subject subject) {

@@ -23,6 +23,8 @@ public class DropdashShellService {
 
 	ps = new Ps(),
 
+	ping = new Ping(),
+
 	speed = new Speed(),
 
 	top = new Top(),
@@ -97,6 +99,10 @@ public class DropdashShellService {
 
 	public String bandwidth() {
 		return bandwidth.execute();
+	}
+
+	public String ping() {
+		return ping.execute();
 	}
 
 }
