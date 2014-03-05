@@ -149,4 +149,11 @@ public class DropdashResource {
 	public Response netstat(@Auth Subject subject) {
 		return Response.ok(controller.netstat()).build();
 	}
+
+	@GET
+	@Path("/lastlog")
+	@Timed
+	public Response lastlog(@Auth Subject subject) {
+		return Response.ok(controller.lastlog()).build();
+	}
 }

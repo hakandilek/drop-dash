@@ -82,4 +82,8 @@ public class DropdashController {
 		return shell.time();
 	}
 
+	public String lastlog() {
+		return shell.lastlog();
+	}
+
 }

@@ -13,6 +13,8 @@ public class DropdashShellService {
 
 	issue = new Issue(),
 
+	lastlog = new Lastlog(),
+
 	loadavg = new Loadavg(),
 
 	mem = new Mem(),
@@ -109,6 +111,10 @@ public class DropdashShellService {
 
 	public String time() {
 		return time.execute();
+	}
+
+	public String lastlog() {
+		return lastlog.execute();
 	}
 
 }
